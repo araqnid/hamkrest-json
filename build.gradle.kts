@@ -3,6 +3,7 @@ import java.io.ByteArrayOutputStream
 plugins {
     kotlin("jvm") version "1.2.0"
     `maven-publish`
+    id("com.jfrog.bintray") version "1.7.3"
 }
 
 val gitVersion by extra {
@@ -24,7 +25,7 @@ val jacksonVersion by extra("2.9.2")
 val hamkrestVersion by extra("1.4.2.2")
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -64,18 +65,26 @@ val sourcesJar by tasks.creating(Jar::class) {
 }
 
 publishing {
-    repositories {
-        maven(url = "https://repo.araqnid.org/maven/") {
-            credentials {
-                username = "repo-user"
-                password = "repo-password"
-            }
-        }
-    }
     (publications) {
         "mavenJava"(MavenPublication::class) {
             from(components["java"])
             artifact(sourcesJar)
         }
+    }
+}
+
+val bintrayUser by project
+val bintrayApiKey by project
+
+bintray {
+    user = (bintrayUser ?: project.properties["bintray.user"] ?: System.getenv("BINTRAY_USER")).toString()
+    key = (bintrayApiKey ?: project.properties["bintray.apiKey"] ?: System.getenv("BINTRAY_API_KEY")).toString()
+    setPublications("mavenJava")
+    pkg.repo = "maven"
+    pkg.setLicenses("Apache-2.0")
+    pkg.name = "hamkrest-json"
+    pkg.version.name = gitVersion
+    if (!gitVersion.contains(".g")) {
+        pkg.version.vcsTag = "v" + gitVersion
     }
 }
