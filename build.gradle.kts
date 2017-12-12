@@ -82,6 +82,7 @@ bintray {
     pkg.name = "hamkrest-json"
     pkg.setLicenses("Apache-2.0")
     pkg.vcsUrl = "https://github.com/araqnid/hamkrest-json"
+    pkg.desc = "Hamkrest matchers for JSON"
     pkg.version.name = gitVersion
     if (!gitVersion.contains(".g")) {
         pkg.version.vcsTag = "v" + gitVersion

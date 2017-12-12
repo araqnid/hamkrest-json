@@ -100,3 +100,19 @@ Match elements in any order:
 ```kotlin
 assert.that("""[1, 2, 3]""", json(jsonArray().inAnyOrder(jsonInt(2), jsonInt(1), jsonInt(3))))
 ```
+
+
+Get the library
+---------------
+
+Hamkrest-JSON is published on [JCenter](https://bintray.com/bintray/jcenter). You need something like this in
+`build.gradle` or `build.gradle.kts`:
+
+```kotlin
+repositories {
+    jcenter()
+}
+dependencies {
+    compile("org.araqnid:hamkrest-json:1.0.3")
+}
+```
