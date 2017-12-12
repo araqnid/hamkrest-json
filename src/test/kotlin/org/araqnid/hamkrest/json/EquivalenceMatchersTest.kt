@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory
 import com.natpryce.hamkrest.assertion.assert
 import org.junit.Test
 
-class JsonEquivalenceMatchersTest {
+class EquivalenceMatchersTest {
     @Test
     fun `matches string`() {
         assert.that("\"foo\"", equivalentTo("\"foo\""))

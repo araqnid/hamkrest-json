@@ -6,7 +6,7 @@ import com.natpryce.hamkrest.closeTo
 import com.natpryce.hamkrest.equalTo
 import org.junit.Test
 
-class JsonStructureMatchersTest {
+class StructureMatchersTest {
     @Test
     fun `matches integer`() {
         assert.that("123", json(jsonInt(123)))
