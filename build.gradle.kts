@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("reflect"))
+    implementation(kotlin("reflect", "1.2.0"))
     compile("com.natpryce:hamkrest:$hamkrestVersion")
     compile("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     testImplementation(kotlin("test-junit"))
