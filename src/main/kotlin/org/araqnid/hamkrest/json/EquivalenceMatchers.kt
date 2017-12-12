@@ -15,31 +15,41 @@ private val userInputMapper = ObjectMapper()
         .enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION)
 
 fun equivalentJsonNode(expectedJsonSource: String): Matcher<JsonNode> =
-        _equivalentTo(expectedJsonSource,
+        jsonRepresentationEquivalentTo(expectedJsonSource,
                 userInputMapper::readTree,
                 { it })
 
 fun equivalentTo(expectedJsonSource: String): Matcher<String> =
-        _equivalentTo(expectedJsonSource,
+        jsonRepresentationEquivalentTo(expectedJsonSource,
                 userInputMapper::readTree,
                 strictMapper::readTree)
 
 fun equivalentTo(expectedJsonSource: ByteArray): Matcher<String> =
-        _equivalentTo(expectedJsonSource,
+        jsonRepresentationEquivalentTo(expectedJsonSource,
                 userInputMapper::readTree,
                 strictMapper::readTree)
 
 fun bytesEquivalentTo(expectedJsonSource: String): Matcher<ByteArray> =
-        _equivalentTo(expectedJsonSource,
+        jsonRepresentationEquivalentTo(expectedJsonSource,
                 userInputMapper::readTree,
                 strictMapper::readTree)
 
 fun bytesEquivalentTo(expectedJsonSource: ByteArray): Matcher<ByteArray> =
-        _equivalentTo(expectedJsonSource,
+        jsonRepresentationEquivalentTo(expectedJsonSource,
                 userInputMapper::readTree,
                 strictMapper::readTree)
 
-private fun <Expected, Actual> _equivalentTo(expectedJsonSource: Expected, expectedJsonParser: (Expected) -> JsonNode, actualJsonParser: (Actual) -> JsonNode) : Matcher<Actual> {
+fun <Actual> equivalentTo(expectedJsonSource: String, jsonParser: (Actual) -> JsonNode): Matcher<Actual> =
+        jsonRepresentationEquivalentTo(expectedJsonSource,
+                userInputMapper::readTree,
+                jsonParser)
+
+fun <Actual> equivalentTo(expectedJsonSource: ByteArray, jsonParser: (Actual) -> JsonNode): Matcher<Actual> =
+        jsonRepresentationEquivalentTo(expectedJsonSource,
+                userInputMapper::readTree,
+                jsonParser)
+
+fun <Expected, Actual> jsonRepresentationEquivalentTo(expectedJsonSource: Expected, expectedJsonParser: (Expected) -> JsonNode, actualJsonParser: (Actual) -> JsonNode) : Matcher<Actual> {
     val expectedJson = try {
         expectedJsonParser(expectedJsonSource)
     } catch (e: IOException) {
@@ -54,10 +64,10 @@ private fun <Expected, Actual> _equivalentTo(expectedJsonSource: Expected, expec
                 return MatchResult.Mismatch("Invalid JSON: $e")
             }
 
-            if (expectedJson == actualJson)
-                return MatchResult.Match
+            return if (expectedJson == actualJson)
+                MatchResult.Match
             else
-                return MatchResult.Mismatch("$actualJson")
+                MatchResult.Mismatch("$actualJson")
         }
 
         override val description: String
