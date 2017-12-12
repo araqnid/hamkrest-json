@@ -1,11 +1,7 @@
 JSON matchers for Hamkrest
 ==========================
 
-[ ![Build Status](https://travis-ci.org/araqnid/hamkrest-json.svg?branch=master)](https://travis-ci.org/araqnid/hamkrest-json)
-
-[ ![Download](https://api.bintray.com/packages/araqnid/maven/hamkrest-json/images/download.svg) ](https://bintray.com/araqnid/maven/hamkrest-json/_latestVersion)
-
-[ ![Kotlin](https://img.shields.io/badge/kotlin-1.2.0-blue.svg)](http://kotlinlang.org)
+[ ![Build Status](https://travis-ci.org/araqnid/hamkrest-json.svg?branch=master)](https://travis-ci.org/araqnid/hamkrest-json) [ ![Download](https://api.bintray.com/packages/araqnid/maven/hamkrest-json/images/download.svg) ](https://bintray.com/araqnid/maven/hamkrest-json/_latestVersion) [ ![Kotlin](https://img.shields.io/badge/kotlin-1.2.0-blue.svg)](http://kotlinlang.org)
 
 [What is Hamkrest?](https://github.com/npryce/hamkrest)
 
