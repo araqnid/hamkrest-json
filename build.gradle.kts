@@ -79,10 +79,12 @@ val bintrayApiKey by project
 bintray {
     user = (bintrayUser ?: project.properties["bintray.user"] ?: System.getenv("BINTRAY_USER")).toString()
     key = (bintrayApiKey ?: project.properties["bintray.apiKey"] ?: System.getenv("BINTRAY_API_KEY")).toString()
+    publish = true
     setPublications("mavenJava")
     pkg.repo = "maven"
-    pkg.setLicenses("Apache-2.0")
     pkg.name = "hamkrest-json"
+    pkg.setLicenses("Apache-2.0")
+    pkg.vcsUrl = "https://github.com/araqnid/hamkrest-json"
     pkg.version.name = gitVersion
     if (!gitVersion.contains(".g")) {
         pkg.version.vcsTag = "v" + gitVersion
