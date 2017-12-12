@@ -73,12 +73,9 @@ publishing {
     }
 }
 
-val bintrayUser by project
-val bintrayApiKey by project
-
 bintray {
-    user = (bintrayUser ?: project.properties["bintray.user"] ?: System.getenv("BINTRAY_USER")).toString()
-    key = (bintrayApiKey ?: project.properties["bintray.apiKey"] ?: System.getenv("BINTRAY_API_KEY")).toString()
+    user = (project.properties["bintray.user"] ?: "").toString()
+    key = (project.properties["bintray.apiKey"] ?: "").toString()
     publish = true
     setPublications("mavenJava")
     pkg.repo = "maven"
