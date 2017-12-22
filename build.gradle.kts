@@ -1,7 +1,7 @@
 import java.io.ByteArrayOutputStream
 
 plugins {
-    kotlin("jvm") version "1.2.0"
+    kotlin("jvm") version "1.2.10"
     `maven-publish`
     id("com.jfrog.bintray") version "1.7.3"
 }
@@ -21,7 +21,7 @@ val gitVersion by extra {
 group = "org.araqnid"
 version = gitVersion
 
-val jacksonVersion by extra("2.9.2")
+val jacksonVersion by extra("2.9.3")
 val hamkrestVersion by extra("1.4.2.2")
 
 repositories {
@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("reflect", "1.2.0"))
+    implementation(kotlin("reflect", "1.2.10"))
     compile("com.natpryce:hamkrest:$hamkrestVersion")
     compile("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     testImplementation(kotlin("test-junit"))
