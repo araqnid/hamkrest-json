@@ -57,9 +57,10 @@ fun jsonBytes(matcher: Matcher<JsonNode>): Matcher<ByteArray> {
 }
 
 private fun MatchResult.prefixedWith(prefix: String): MatchResult {
-    if (this == MatchResult.Match)
-        return this
-    return MatchResult.Mismatch("$prefix ${describe(this)}")
+    return if (this == MatchResult.Match)
+        this
+    else
+        MatchResult.Mismatch("$prefix ${describe(this)}")
 }
 
 fun jsonAny(): Matcher<JsonNode> = anything
