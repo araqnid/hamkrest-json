@@ -4,9 +4,14 @@ import com.natpryce.hamkrest.and
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.closeTo
 import com.natpryce.hamkrest.equalTo
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.ExpectedException
 
 class StructureMatchersTest {
+    @get:Rule
+    val thrown: ExpectedException = ExpectedException.none()
+
     @Test
     fun `matches integer`() {
         assertThat("123", json(jsonInt(123)))
@@ -250,5 +255,11 @@ class StructureMatchersTest {
                         and jsonArray().including(jsonInt(
                         3))
         ))
+    }
+
+    @Test
+    fun `prohibits specifying the same property multiple times`() {
+        thrown.expect(IllegalArgumentException::class.java)
+        jsonObject().withProperty("a", 1).withProperty("a", 1)
     }
 }

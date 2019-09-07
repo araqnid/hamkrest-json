@@ -193,6 +193,7 @@ class ObjectNodeMatcher(
     fun withAnyOtherProperties() = ObjectNodeMatcher(propertyMatchers, false)
 
     fun <N : JsonNode> withProperty(key: String, matcher: Matcher<N>): ObjectNodeMatcher {
+        require(!propertyMatchers.containsKey(key)) { "Property '$key' is specified multiple times" }
         @Suppress("UNCHECKED_CAST")
         return ObjectNodeMatcher(propertyMatchers + (key to matcher as Matcher<JsonNode>),
                 failOnUnexpectedProperties)
