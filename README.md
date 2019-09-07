@@ -113,6 +113,6 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile("org.araqnid:hamkrest-json:1.0.3")
+    testImplementation("org.araqnid:hamkrest-json:1.1.0")
 }
 ```
