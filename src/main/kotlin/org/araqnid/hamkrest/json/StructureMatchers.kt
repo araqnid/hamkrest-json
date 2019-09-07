@@ -176,7 +176,7 @@ class ObjectNodeMatcher(
             remainingFieldNames.remove(name)
         }
 
-        if (failOnUnexpectedProperties && !remainingFieldNames.isEmpty()) {
+        if (failOnUnexpectedProperties && remainingFieldNames.isNotEmpty()) {
             return MatchResult.Mismatch("unexpected properties: $remainingFieldNames")
         }
 
