@@ -1,42 +1,30 @@
-import java.io.ByteArrayOutputStream
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.2.10"
+    kotlin("jvm") version "1.3.50"
     `maven-publish`
-    id("com.jfrog.bintray") version "1.7.3"
-}
-
-val gitVersion by extra {
-    val capture = ByteArrayOutputStream()
-    project.exec {
-        commandLine("git", "describe", "--tags", "--always")
-        standardOutput = capture
-    }
-    String(capture.toByteArray())
-            .trim()
-            .removePrefix("v")
-            .replace('-', '.')
+    id("com.jfrog.bintray") version "1.8.4"
 }
 
 group = "org.araqnid"
-version = gitVersion
+version = "1.1.0"
 
-val jacksonVersion by extra("2.9.3")
-val hamkrestVersion by extra("1.4.2.2")
+val jacksonVersion by extra("2.9.9")
+val hamkrestVersion by extra("1.7.0.0")
 
 repositories {
     jcenter()
 }
 
 dependencies {
-    implementation(kotlin("reflect", "1.2.10"))
+    implementation(kotlin("reflect"))
     compile("com.natpryce:hamkrest:$hamkrestVersion")
     compile("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     testImplementation(kotlin("test-junit"))
 }
 
 tasks {
-    withType<JavaCompile> {
+    withType<JavaCompile>().configureEach {
         sourceCompatibility = "1.8"
         sourceCompatibility = "1.8"
         options.encoding = "UTF-8"
@@ -45,13 +33,13 @@ tasks {
         options.isDeprecation = true
     }
 
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    withType<KotlinCompile>().configureEach {
         kotlinOptions {
             jvmTarget = "1.8"
         }
     }
 
-    "jar"(Jar::class) {
+    withType<Jar>().configureEach {
         manifest {
             attributes["Implementation-Title"] = project.description ?: project.name
             attributes["Implementation-Version"] = project.version
@@ -61,12 +49,12 @@ tasks {
 
 val sourcesJar by tasks.creating(Jar::class) {
     classifier = "sources"
-    from(java.sourceSets["main"].allSource)
+    from(sourceSets["main"].allSource)
 }
 
 publishing {
-    (publications) {
-        "mavenJava"(MavenPublication::class) {
+    publications {
+        register<MavenPublication>("mavenJava") {
             from(components["java"])
             artifact(sourcesJar)
         }
@@ -83,8 +71,6 @@ bintray {
     pkg.setLicenses("Apache-2.0")
     pkg.vcsUrl = "https://github.com/araqnid/hamkrest-json"
     pkg.desc = "Hamkrest matchers for JSON"
-    pkg.version.name = gitVersion
-    if (!gitVersion.contains(".g")) {
-        pkg.version.vcsTag = "v" + gitVersion
-    }
+    pkg.version.name = project.version.toString()
+    pkg.version.vcsTag = "v" + project.version
 }
