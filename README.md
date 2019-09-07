@@ -15,23 +15,23 @@ Match some text as JSON:
 
 ```kotlin
 // matches despite spaces
-assert.that("""{"a":1,"b":2}""", equivalentTo("""{ "a" : 1, "b" : 2 }"""))
+assertThat("""{"a":1,"b":2}""", equivalentTo("""{ "a" : 1, "b" : 2 }"""))
 ```
 
 ```kotlin
 // matches despite fields in other order
-assert.that("""{"b":2,"a":1}""", equivalentTo("""{ "a" : 1, "b" : 2 }"""))
+assertThat("""{"b":2,"a":1}""", equivalentTo("""{ "a" : 1, "b" : 2 }"""))
 ```
 
 ```kotlin
 // pattern specified in matcher can be written more loosely
-assert.that("""{"a":1,"b":"foo"}""", equivalentTo("""{ a: 1, b: 'foo' }"""))
+assertThat("""{"a":1,"b":"foo"}""", equivalentTo("""{ a: 1, b: 'foo' }"""))
 ```
 
 Match a sequence of bytes:
 
 ```kotlin
-assert.that("""{"a":1,"b":2}""".toByteArray(), bytesEquivalentTo("""{ "a" : 1, "b" : 2 }"""))
+assertThat("""{"a":1,"b":2}""".toByteArray(), bytesEquivalentTo("""{ "a" : 1, "b" : 2 }"""))
 ```
 
 Structural matchers
@@ -40,10 +40,10 @@ Structural matchers
 Match AST nodes by specifying either the expected value or a matcher:
 
 ```kotlin
-assert.that("""42""", json(jsonInt(42)))
-assert.that("""42""", json(jsonInt(equalTo(42))))
-assert.that(""""xyzzy"""", json(jsonString("xyzzy")))
-assert.that(""""xyzzy"""", json(jsonString(anything)))
+assertThat("""42""", json(jsonInt(42)))
+assertThat("""42""", json(jsonInt(equalTo(42))))
+assertThat(""""xyzzy"""", json(jsonString("xyzzy")))
+assertThat(""""xyzzy"""", json(jsonString(anything)))
 ```
 
 ### Objects
@@ -51,7 +51,7 @@ assert.that(""""xyzzy"""", json(jsonString(anything)))
 Build matchers for objects:
 
 ```kotlin
-assert.that("""{ "a": 1, "b": 2 }""", json(jsonObject()
+assertThat("""{ "a": 1, "b": 2 }""", json(jsonObject()
   .withProperty("a", 1)
   .withProperty("b", 2)
 ))
@@ -61,7 +61,7 @@ By default an object matcher will mismatch if the input contains additional prop
 they can be allowed:
 
 ```kotlin
-assert.that("""{ "a": 1, "b": 2, "foo": "bar" }""", json(jsonObject()
+assertThat("""{ "a": 1, "b": 2, "foo": "bar" }""", json(jsonObject()
   .withProperty("a", 1)
   .withProperty("b", 2)
   .withAnyOtherProperties()
@@ -74,7 +74,7 @@ likely node type) or a matcher of `JsonNode` (such as `jsonInt()` etc or another
 Shorthand for switching to an equivalence matcher:
 
 ```kotlin
-assert.that("""{ "a": { "b" : 1 } }""", json(jsonObject()
+assertThat("""{ "a": { "b" : 1 } }""", json(jsonObject()
   .withPropertyJSON("a", """{ b : 1}""")
 ))
 ```
@@ -86,19 +86,19 @@ By default, `jsonArray()` will match only an empty array (change in future?)
 Match contents exactly:
 
 ```kotlin
-assert.that("""[1, 2, 3]""", json(jsonArray().of(jsonInt(1), jsonInt(2), jsonInt(3))))
+assertThat("""[1, 2, 3]""", json(jsonArray().of(jsonInt(1), jsonInt(2), jsonInt(3))))
 ```
 
 Match any element:
 
 ```kotlin
-assert.that("""[1, 2, 3]""", json(jsonArray().including(jsonInt(2))))
+assertThat("""[1, 2, 3]""", json(jsonArray().including(jsonInt(2))))
 ```
 
 Match elements in any order:
 
 ```kotlin
-assert.that("""[1, 2, 3]""", json(jsonArray().inAnyOrder(jsonInt(2), jsonInt(1), jsonInt(3))))
+assertThat("""[1, 2, 3]""", json(jsonArray().inAnyOrder(jsonInt(2), jsonInt(1), jsonInt(3))))
 ```
 
 
