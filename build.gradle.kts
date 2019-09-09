@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "org.araqnid"
-version = "1.1.0"
+version = "1.1.1"
 
 val jacksonVersion by extra("2.9.9")
 val hamkrestVersion by extra("1.7.0.0")
