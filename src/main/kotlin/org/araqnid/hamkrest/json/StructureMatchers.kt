@@ -28,7 +28,7 @@ fun json(matcher: Matcher<JsonNode>): Matcher<String> {
     return object : Matcher.Primitive<String>() {
         override fun invoke(actual: String): MatchResult {
             val node: JsonNode = try {
-                parse(actual) ?: return MatchResult.Mismatch("Invalid JSON: $actual")
+                parse(actual)?.takeUnless { it.isMissingNode } ?: return MatchResult.Mismatch("Invalid JSON: $actual")
             } catch (e: IOException) {
                 return MatchResult.Mismatch("Invalid JSON: $e")
             }

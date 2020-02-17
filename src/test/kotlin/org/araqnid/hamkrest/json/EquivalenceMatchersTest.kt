@@ -1,6 +1,7 @@
 package org.araqnid.hamkrest.json
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory
+import com.fasterxml.jackson.databind.node.NumericNode
 import com.natpryce.hamkrest.assertion.assertThat
 import org.junit.Test
 
@@ -54,7 +55,7 @@ class EquivalenceMatchersTest {
     fun `matches Jackson tree node`() {
         val nodeFactory = JsonNodeFactory.instance
         val objectNode = nodeFactory.objectNode().apply {
-            set("a", nodeFactory.numberNode(1))
+            set<NumericNode>("a", nodeFactory.numberNode(1))
         }
         assertThat(objectNode, equivalentJsonNode("{ a : 1 }"))
     }
