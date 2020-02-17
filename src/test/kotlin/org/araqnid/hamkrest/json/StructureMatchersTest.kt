@@ -94,6 +94,16 @@ class StructureMatchersTest {
     }
 
     @Test
+    fun `matches boolean false`() {
+        assertThat("""false""", json(jsonFalse()))
+    }
+
+    @Test
+    fun `matches boolean true`() {
+        assertThat("""true""", json(jsonTrue()))
+    }
+
+    @Test
     fun `matches string`() {
         assertThat("\"foo\"",
                 json(jsonString("foo")))
