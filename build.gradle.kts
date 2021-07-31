@@ -7,7 +7,7 @@ plugins {
     signing
 }
 
-group = "org.araqnid"
+group = "org.araqnid.hamkrest"
 version = "1.1.2"
 
 description = "JSON matchers for Hamkrest"
