@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "org.araqnid"
-version = "1.1.1"
+version = "1.1.2"
 
 description = "JSON matchers for Hamkrest"
 
