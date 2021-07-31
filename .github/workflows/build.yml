@@ -1,4 +1,4 @@
-name: build
+name: "Gradle Build"
 on: [push]
 
 jobs:
