@@ -19,7 +19,7 @@ repositories {
 dependencies {
     api("com.natpryce:hamkrest:1.7.0.0")
     api("com.fasterxml.jackson.core:jackson-databind")
-    api(platform("com.fasterxml.jackson:jackson-bom:2.10.2"))
+    api(platform("com.fasterxml.jackson:jackson-bom:2.10.5"))
     implementation(kotlin("reflect"))
     testImplementation(kotlin("test-junit"))
 }
