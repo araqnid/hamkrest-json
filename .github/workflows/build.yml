@@ -11,5 +11,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'zulu'
-      - name: Build
-        run: ./gradlew build
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: build
