@@ -1,17 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.net.URI
 
 plugins {
     kotlin("jvm") version "1.3.61"
     `maven-publish`
 }
 
-val buildNumber: String? = System.getenv("BUILD_NUMBER")
-val versionPrefix = "1.1"
-
 group = "org.araqnid"
-
-if (buildNumber != null)
-    version = "${versionPrefix}.${buildNumber}"
+version = "1.1.1"
 
 repositories {
     mavenCentral()
@@ -57,6 +53,16 @@ publishing {
     publications {
         register<MavenPublication>("mavenJava") {
             from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = URI("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = ""
+                password = ""
+            }
         }
     }
 }
