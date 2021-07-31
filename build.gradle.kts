@@ -4,6 +4,7 @@ import java.net.URI
 plugins {
     kotlin("jvm") version "1.3.61"
     `maven-publish`
+    signing
 }
 
 group = "org.araqnid"
@@ -98,4 +99,9 @@ publishing(Action {
             }
         }
     }
+})
+
+signing(Action {
+    useGpgCmd()
+    sign(publishing.publications)
 })
