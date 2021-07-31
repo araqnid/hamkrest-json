@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.net.URI
 
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.4.30"
     `maven-publish`
     signing
 }
