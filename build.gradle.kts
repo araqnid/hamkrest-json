@@ -21,11 +21,11 @@ dependencies {
     testImplementation(kotlin("test-junit"))
 }
 
-java {
+java(Action {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
     withSourcesJar()
-}
+})
 
 tasks {
     withType<JavaCompile>().configureEach {
@@ -49,7 +49,7 @@ tasks {
     }
 }
 
-publishing {
+publishing(Action {
     publications {
         register<MavenPublication>("mavenJava") {
             from(components["java"])
@@ -65,4 +65,4 @@ publishing {
             }
         }
     }
-}
+})
