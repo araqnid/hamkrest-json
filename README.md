@@ -1,7 +1,7 @@
 JSON matchers for Hamkrest
 ==========================
 
-[ ![Download](https://api.bintray.com/packages/araqnid/maven/hamkrest-json/images/download.svg) ](https://bintray.com/araqnid/maven/hamkrest-json/_latestVersion) [ ![Kotlin](https://img.shields.io/badge/kotlin-1.3.61-blue.svg)](http://kotlinlang.org)
+[ ![Kotlin](https://img.shields.io/badge/kotlin-1.3.61-blue.svg)](http://kotlinlang.org)
 
 [What is Hamkrest?](https://github.com/npryce/hamkrest)
 
@@ -99,20 +99,4 @@ Match elements in any order:
 
 ```kotlin
 assertThat("""[1, 2, 3]""", json(jsonArray().inAnyOrder(jsonInt(2), jsonInt(1), jsonInt(3))))
-```
-
-
-Get the library
----------------
-
-Hamkrest-JSON is published on [JCenter](https://bintray.com/bintray/jcenter). You need something like this in
-`build.gradle` or `build.gradle.kts`:
-
-```kotlin
-repositories {
-    jcenter()
-}
-dependencies {
-    testImplementation("org.araqnid:hamkrest-json:1.1.1")
-}
 ```
