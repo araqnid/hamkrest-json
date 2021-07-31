@@ -2,6 +2,7 @@ JSON matchers for Hamkrest
 ==========================
 
 [ ![Kotlin](https://img.shields.io/badge/kotlin-1.3.61-blue.svg)](http://kotlinlang.org)
+[![build](https://github.com/araqnid/hamkrest-json/actions/workflows/build.yml/badge.svg)](https://github.com/araqnid/hamkrest-json/actions/workflows/build.yml)
 
 [What is Hamkrest?](https://github.com/npryce/hamkrest)
 
