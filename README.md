@@ -2,7 +2,7 @@ JSON matchers for Hamkrest
 ==========================
 
 [ ![Kotlin](https://img.shields.io/badge/kotlin-1.4.32-blue.svg)](http://kotlinlang.org)
-[![build](https://github.com/araqnid/hamkrest-json/actions/workflows/build.yml/badge.svg)](https://github.com/araqnid/hamkrest-json/actions/workflows/build.yml)
+[![build](https://github.com/araqnid/hamkrest-json/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/araqnid/hamkrest-json/actions/workflows/gradle-build.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/org.araqnid.hamkrest/hamkrest-json.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.araqnid.hamkrest%22%20AND%20a%3A%22hamkrest-json%22)
 
 [What is Hamkrest?](https://github.com/npryce/hamkrest)
